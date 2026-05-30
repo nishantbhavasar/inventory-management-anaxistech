@@ -105,7 +105,10 @@ export default class InventoryController {
       }
 
       // update Inventory Item
-      const updatedInventoryItem = await InventoryItemsModel.updateOne(body);
+      const updatedInventoryItem = await InventoryItemsModel.updateOne(
+        { _id: id },
+        body,
+      );
 
       return {
         message: "Item Updated Successfully",
