@@ -37,7 +37,10 @@ export default class InventoryController {
 
   async getInventoryItem(id) {
     try {
-      const inventoryItem = await InventoryItemsModel.findOne({_id:id,isDeleted:false});
+      const inventoryItem = await InventoryItemsModel.findOne({
+        _id: id,
+        isDeleted: false,
+      });
 
       if (!inventoryItem) {
         return {
@@ -87,7 +90,10 @@ export default class InventoryController {
   async updateInventoryItem(id, body) {
     try {
       // Check If Invetnory isExists
-      const inventory = await InventoryItemsModel.findOne({_id:id,isDeleted:false})
+      const inventory = await InventoryItemsModel.findOne({
+        _id: id,
+        isDeleted: false,
+      });
 
       if (!inventory) {
         return {
@@ -115,7 +121,10 @@ export default class InventoryController {
   async deleteInventoryItem(id) {
     try {
       // Check Is inventory Exist
-      const inventory = await InventoryItemsModel.findOne({_id:id,isDeleted:false})
+      const inventory = await InventoryItemsModel.findOne({
+        _id: id,
+        isDeleted: false,
+      });
 
       if (!inventory) {
         return {
@@ -127,9 +136,12 @@ export default class InventoryController {
       }
 
       // Soft Delete Inventory Item
-      await InventoryItemsModel.updateOne({
-        isDeleted: true,
-      });
+      await InventoryItemsModel.updateOne(
+        {
+          _id: id,
+        },
+        { isDeleted: true },
+      );
 
       return {
         message: "Item Deleted Successfully",
